@@ -49,21 +49,13 @@ rs <- calc_season(vr = 'tmax', sn = 6:8, fn = 'max')
 writeRaster(rs, '../raster/climate/baseline_cut/seasons/summer_tmax.tif')
 # Summer tmean
 rs <- calc_season(vr = 'tmean', sn = 6:8, fn = 'mean')
-writeRaster(rs, '../raster/climate/baseline_cut/seasons/summer_tmax.tif')
-
-
-
-# Summer
-mnt <- 6:8
-fle <- grep('tmax', fls, value = TRUE)
-fle <- mixedsort(fle)
-mnt <- ifelse(mnt < 10, paste0('0', mnt), mnt)
-mnt <- paste0(mnt, '.tiff', collapse = '|')
-fle <- grep(mnt, fle, value = TRUE)
-stk <- stack(fle)
-stk <- list.files('../raster/climate/baseline/seasons', full.names = T, pattern = '.tif$')
-stk <- stack(stk)
-max <- calc(stk, raster::which.max)
+writeRaster(rs, '../raster/climate/baseline_cut/seasons/summer_tmean.tif')
+# Summer tmin
+rs <- calc_season(vr = 'tmin', sn = 6:8, fn = 'min')
+writeRaster(rs, '../raster/climate/baseline_cut/seasons/summer_tmin.tif')
+# Summer precipitation
+rs <- calc_season(vr = 'prec', sn = 6:8, fn = 'sum')
+writeRaster(rs, '../raster/climate/baseline_cut/seasons/summer_prec.tif')
 
 
 
